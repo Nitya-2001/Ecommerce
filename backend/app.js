@@ -1,9 +1,8 @@
-const app = require("./app");
+const express = require("express");
 
-const dotenv = require("dotenv");
-const { path } = require("./server");
+const app = express();
+app.use(express.json);
+const product = require("./routes/productRoute");
+app.use("/api/v1/", product);
 
-dotenv.config({ path: "backend/config/config.env" });
-app.listen(process.env.PORT, () => {
-  console.log(`server is working on http://localhost:${process.env.PORT}`);
-});
+module.exports = app;
